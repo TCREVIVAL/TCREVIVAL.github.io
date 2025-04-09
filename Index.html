@@ -1,8 +1,9 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-WEB SITE UNDER CONSTRUCTION
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terra Classic Revival</title>
@@ -380,31 +381,60 @@ WEB SITE UNDER CONSTRUCTION
     </footer>
   </div>
 
-  <script>
-    async function fetchTokenPrice() {
-  try {
-    const reserve1 = 790161368458;
-    const reserve2 = 7102268935174;
-    const price = reserve2 / reserve1;
-    const priceElement = document.getElementById("token-price");
-    const oldPrice = priceElement.textContent;
-    const newPrice = `$${price.toFixed(6)}`;
-    if (oldPrice !== newPrice) {
-      priceElement.textContent = newPrice;
-      priceElement.classList.add("blink");
-      const arrow = document.createElement("span");
-      arrow.textContent = "⬆";
-      arrow.classList.add("blink-arrow");
-      priceElement.appendChild(arrow);
-      setTimeout(() => {
-        priceElement.classList.remove("blink");
-        arrow.remove();
-      }, 400);
+ /* Styling for the green box and price */
+    .price-box {
+      background-color: #32CD32;
+      padding: 10px; /* Reduced padding */
+      text-align: center;
+      border-radius: 10px;
+      width: 150px; /* Set a fixed width */
+      margin: auto; /* Center align */
     }
-  } catch (error) {
-    document.getElementById("token-price").textContent = "Unavailable";
-  }
-}
-fetchTokenPrice();
-setInterval(fetchTokenPrice, 5000);
+
+    .token-price {
+      font-size: 1.5rem; /* Reduced font size */
+      color: white;
+      font-weight: bold;
+    }
+
+    .price-heading {
+      font-size: 1rem; /* Smaller font size for the heading */
+      font-weight: bold;
+      color: white;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="price-box">
+    <p class="price-heading">TCR Price Live</p>
+    <p class="token-price" id="token-price">$0.000000</p>
+  </div>
+
+  <script>
+    async function getPrice() {
+      try {
+        let response = await fetch('https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/contract/terra1j8hxr6v6g5ku65apq47lta00kgwq7e6kf52vv5twmljz9zvg095qmq4hks/smart/eyJwb29sIjp7fX0=', {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+        
+        let data = await response.json();
+        console.log(data);  // Check the fetched data in the console
+        
+        if (data.data.reserve1 && data.data.reserve2) {
+          const price = (data.data.reserve2 / data.data.reserve1).toFixed(6);
+          document.getElementById("token-price").innerText = `$${price}`;
+        } else {
+          console.log("Data not available for reserves");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    getPrice();
   </script>
+
