@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TCR Token Whitepaper</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --card: #f9f9f9;
+      --accent: #3b82f6;
+      --check: #22c55e;
+      --warn: #f59e0b;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --card: #1e1e1e;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    h1, h2, h3 {
+      color: var(--text);
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .check {
+      color: var(--check);
+    }
+
+    .warn {
+      color: var(--warn);
+    }
+
+    .faq-summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    details {
+      margin-top: 10px;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .toggle-btn:hover {
+      background: #2563eb;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <div class="container">
+    <div class="card">
+      <h1>TCR Token Whitepaper</h1>
+    </div>
+
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        TCR is a deflationary utility token designed to support the restoration and stabilization of the USTC peg...
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Token Details</h2>
+      <ul>
+        <li><strong>Token Name:</strong> Terra Classic Revival (TCR)</li>
+        <li><strong>Total Supply:</strong> 10,000,000 TCR (Hard Cap)</li>
+        <li><strong>Token Nature:</strong> Deflationary</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Purpose</h2>
+      <ul>
+        <li>Support the re-pegging of USTC to $1</li>
+        <li>Accumulate, lock, and burn USTC from the market</li>
+        <li>Burn TCR based on USTC price milestones</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>USTC Buyback and Lock Mechanism</h2>
+      <p>All USTC acquired via taxes is locked/burned in the TCR Reward Pool...</p>
+    </div>
+
+    <div class="card">
+      <h2>Implementation of the Tax System</h2>
+      <ul>
+        <li>40% to buy USTC</li>
+        <li>30% to TCR liquidity provision</li>
+        <li>30% to buy back TCR</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Unlock and TCR Burn Triggers</h2>
+      <p>Every $0.05 increase in USTC price unlocks 10% of the locked pool for buyback and burn of TCR...</p>
+    </div>
+
+    <div class="card">
+      <h2>FAQ</h2>
+      <details>
+        <summary class="faq-summary">What happens with the accumulated USTC?</summary>
+        <p>
+          When a milestone is reached:<br>
+          – 10% buys back TCR<br>
+          – 90% is permanently burned (sent to anxu)
+        </p>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>TCR Games and Utility</h2>
+      <ul>
+        <li>Games and mini utilities</li>
+        <li>Business integration on LUNC</li>
+        <li>Social media and community onboarding</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Wealth Generation</h2>
+      <p>
+        Community-based, reward-focused long-term strategy. Trade more, hold longer = better for TCR and USTC.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>USTC Supply Target</h2>
+      <p>
+        Goal: Reduce USTC supply to 1 billion by continuously locking it via transaction tax and milestone triggers.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Strengths of the TCR Approach</h2>
+      <ul>
+        <li class="check">✅ Deflationary Model</li>
+        <li class="check">✅ Smart Tax System</li>
+        <li class="check">✅ Holding Incentives</li>
+        <li class="check">✅ Burn Triggers</li>
+        <li class="check">✅ Real-world Growth Plans</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Challenges & Considerations</h2>
+      <ul>
+        <li class="warn">⚠️ Market participation is key</li>
+        <li class="warn">⚠️ Exchange listings and liquidity support</li>
+      </ul>
+      <p>Adoption of TCR utilities is critical to peg restoration success.</p>
+    </div>
+
+    <div class="card">
+      <h2>Thank You</h2>
+      <p>– TCR TEAM</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>
