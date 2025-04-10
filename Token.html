@@ -8,47 +8,48 @@
     :root {
       --bg: #ffffff;
       --text: #1a1a1a;
-      --card: #f9f9f9;
       --accent: #3b82f6;
+      --highlight: #f0f4ff;
       --check: #22c55e;
-      --warn: #f59e0b;
+      --warn: #f97316;
     }
 
     body.dark {
-      --bg: #121212;
-      --text: #e0e0e0;
-      --card: #1e1e1e;
+      --bg: #0f0f0f;
+      --text: #e5e5e5;
+      --highlight: #1a1a1a;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
       background: var(--bg);
       color: var(--text);
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
       transition: background 0.3s, color 0.3s;
     }
 
     .container {
       max-width: 900px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-
-    .card {
-      background: var(--card);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
 
     h1, h2, h3 {
       color: var(--text);
+      margin-top: 2rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+      margin-bottom: 30px;
     }
 
     ul {
-      padding-left: 20px;
+      padding-left: 1.5rem;
     }
 
     .check {
@@ -59,15 +60,6 @@
       color: var(--warn);
     }
 
-    .faq-summary {
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    details {
-      margin-top: 10px;
-    }
-
     .toggle-btn {
       position: fixed;
       top: 20px;
@@ -75,19 +67,30 @@
       background: var(--accent);
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.2s;
+      z-index: 999;
     }
 
     .toggle-btn:hover {
       background: #2563eb;
     }
 
+    .highlight {
+      background: var(--highlight);
+      padding: 12px 16px;
+      border-left: 4px solid var(--accent);
+      margin: 20px 0;
+    }
+
     @media (max-width: 600px) {
-      .container {
-        padding: 20px 10px;
+      .toggle-btn {
+        top: 10px;
+        right: 10px;
+        font-size: 0.85rem;
+        padding: 8px 12px;
       }
     }
   </style>
@@ -95,118 +98,93 @@
 <body>
   <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   <div class="container">
-    <div class="card">
-      <h1>TCR Token Whitepaper</h1>
-    </div>
+    <h1>TCR Token Whitepaper</h1>
 
-    <div class="card">
-      <h2>Overview</h2>
-      <p>
-        TCR is a deflationary utility token designed to support the restoration and stabilization of the USTC peg...
-      </p>
-    </div>
+    <h2>Overview</h2>
+    <p>TCR is a deflationary utility token designed to support the restoration and stabilization of the USTC peg. By implementing a strategic buyback-and-lock mechanism, TCR facilitates the progressive reduction of USTC supply and incentivizes long-term holders of both tokens.</p>
 
-    <div class="card">
-      <h2>Token Details</h2>
-      <ul>
-        <li><strong>Token Name:</strong> Terra Classic Revival (TCR)</li>
-        <li><strong>Total Supply:</strong> 10,000,000 TCR (Hard Cap)</li>
-        <li><strong>Token Nature:</strong> Deflationary</li>
-      </ul>
-    </div>
+    <h2>Token Details</h2>
+    <ul>
+      <li><strong>Token Name:</strong> Terra Classic Revival (TCR)</li>
+      <li><strong>Total Supply:</strong> 10,000,000 TCR (Hard Cap)</li>
+      <li><strong>Token Nature:</strong> Deflationary</li>
+    </ul>
 
-    <div class="card">
-      <h2>Purpose</h2>
-      <ul>
-        <li>Support the re-pegging of USTC to $1</li>
-        <li>Accumulate, lock, and burn USTC from the market</li>
-        <li>Burn TCR based on USTC price milestones</li>
-      </ul>
-    </div>
+    <h2>Purpose</h2>
+    <p>TCR serves as a utility and reserve token to:</p>
+    <ul>
+      <li>Support the re-pegging of USTC to $1.</li>
+      <li>Accumulate lock and burn USTC from the market.</li>
+      <li>Burn TCR based on USTC price milestones.</li>
+    </ul>
 
-    <div class="card">
-      <h2>USTC Buyback and Lock Mechanism</h2>
-      <p>All USTC acquired via taxes is locked/burned in the TCR Reward Pool...</p>
-    </div>
+    <h2>USTC Buyback and Lock Mechanism</h2>
+    <p>All USTC acquired via taxes only is locked/burned in the TCR Reward Pool. USTC will remain locked until specific price levels are met.</p>
 
-    <div class="card">
-      <h2>Implementation of the Tax System</h2>
-      <ul>
-        <li>40% to buy USTC</li>
-        <li>30% to TCR liquidity provision</li>
-        <li>30% to buy back TCR</li>
-      </ul>
-    </div>
+    <h2>Implementation of the Tax System</h2>
+    <p>Tax on TCR is 0.5%. This tax will be split into three parts at the end of every month:</p>
+    <ul>
+      <li>40% goes to buy USTC.</li>
+      <li>30% goes to TCR liquidity pool provision.</li>
+      <li>30% goes to buy back TCR from the market.</li>
+    </ul>
+    <p>This system creates long-term value for TCR holders and provides solid returns to those who buy and HOLD the token, in addition to the expected 8% return.</p>
 
-    <div class="card">
-      <h2>Unlock and TCR Burn Triggers</h2>
-      <p>Every $0.05 increase in USTC price unlocks 10% of the locked pool for buyback and burn of TCR...</p>
-    </div>
+    <h2>Unlock and TCR Burn Triggers</h2>
+    <p>Once USTC reaches a new milestone price (in $0.05 increments), 10% of the total locked USTC is used to buy back and burn TCR tokens from the market.</p>
+    <p><strong>Trigger Table:</strong> USTC Price Milestones and TCR Burns</p>
+    <p>Continue buyback and burn</p>
 
-    <div class="card">
-      <h2>FAQ</h2>
-      <details>
-        <summary class="faq-summary">What happens with the accumulated USTC?</summary>
-        <p>
-          When a milestone is reached:<br>
-          – 10% buys back TCR<br>
-          – 90% is permanently burned (sent to anxu)
-        </p>
-      </details>
-    </div>
+    <h2>Understanding the Trigger Table</h2>
+    <p>The Trigger Table adds value back to TCR and can perform massive USTC burns.</p>
 
-    <div class="card">
-      <h2>TCR Games and Utility</h2>
-      <ul>
-        <li>Games and mini utilities</li>
-        <li>Business integration on LUNC</li>
-        <li>Social media and community onboarding</li>
-      </ul>
-    </div>
+    <h2>FAQ</h2>
+    <p><strong>Q:</strong> What would happen with the accumulated USTC under the Unlock and TCR Burn?</p>
+    <p><strong>A:</strong> When the price of USTC touches the price mentioned in the table, two transactions will happen:</p>
+    <ul>
+      <li>10% of USTC will be used to buy back TCR.</li>
+      <li>The remaining 90% of USTC will be burned forever and sent to anxu.</li>
+    </ul>
 
-    <div class="card">
-      <h2>Wealth Generation</h2>
-      <p>
-        Community-based, reward-focused long-term strategy. Trade more, hold longer = better for TCR and USTC.
-      </p>
-    </div>
+    <h2>TCR Games and Utility</h2>
+    <p>Apart from this great feature, our team is working to create:</p>
+    <ul>
+      <li>Games</li>
+      <li>Small utilities</li>
+      <li>Initiatives to bring legacy businesses to the LUNC blockchain</li>
+      <li>Social media campaigns to invite new users to explore LUNC and its Layer 2 projects</li>
+    </ul>
+    <p>This will further accelerate the use case and value generation for TCR and its token holders.</p>
 
-    <div class="card">
-      <h2>USTC Supply Target</h2>
-      <p>
-        Goal: Reduce USTC supply to 1 billion by continuously locking it via transaction tax and milestone triggers.
-      </p>
-    </div>
+    <h2>Long to Medium Term Wealth Generation</h2>
+    <p>We strongly believe this token can create long-term wealth generation with the support of the community. Please note, it does not involve complex solutions for repeg and does not need any investments. People can buy as per the capacity they have and get rewards based on the amount they invest. The more you trade and hold, the better it gets for USTC and the token holders.</p>
 
-    <div class="card">
-      <h2>Strengths of the TCR Approach</h2>
-      <ul>
-        <li class="check">✅ Deflationary Model</li>
-        <li class="check">✅ Smart Tax System</li>
-        <li class="check">✅ Holding Incentives</li>
-        <li class="check">✅ Burn Triggers</li>
-        <li class="check">✅ Real-world Growth Plans</li>
-      </ul>
-    </div>
+    <h2>USTC Supply Target</h2>
+    <p>TCR is designed to continuously acquire USTC via transaction taxes and lock it until milestone triggers are met. The goal is to reduce the circulating supply of USTC down to 1 billion tokens, supporting a gradual return to peg and restoring ecosystem stability.</p>
 
-    <div class="card">
-      <h2>Challenges & Considerations</h2>
-      <ul>
-        <li class="warn">⚠️ Market participation is key</li>
-        <li class="warn">⚠️ Exchange listings and liquidity support</li>
-      </ul>
-      <p>Adoption of TCR utilities is critical to peg restoration success.</p>
-    </div>
+    <h2>Strengths of the TCR Approach</h2>
+    <ul>
+      <li class="check">✅ Deflationary Model – The buyback-and-lock mechanism progressively reduces USTC supply, which is a crucial step for increasing scarcity and supporting price appreciation.</li>
+      <li class="check">✅ Tax Mechanism – A well-designed 0.5% tax ensures continuous acquisition of USTC and strengthens liquidity provisions.</li>
+      <li class="check">✅ Incentives for Holding – Encouraging long-term holding and staking of TCR helps mitigate market volatility.</li>
+      <li class="check">✅ USTC Burn Triggers – The milestone-based burning strategy systematically reduces excess USTC in circulation.</li>
+      <li class="check">✅ Decentralized Growth – Plans for games, utilities, and business adoption add real-world value beyond just being a trading asset.</li>
+    </ul>
 
-    <div class="card">
-      <h2>Thank You</h2>
-      <p>– TCR TEAM</p>
-    </div>
+    <h2>Challenges & Considerations</h2>
+    <ul>
+      <li class="warn">⚠️ Market Participation is Critical – The success depends on enough people trading, staking, and holding both TCR and USTC. If adoption is slow, the impact will be limited.</li>
+      <li class="warn">⚠️ Liquidity & Exchange Support – TCR is listed on GDEX and getting traded on Vyntrex.io. Our aim is to get listed on Terraport, Terraswap and all the other major LUNC Exchanges. Once that is accomplished, we want to get listed across platforms. This would require community to come together and support us.</li>
+    </ul>
+    <p>The key success factor will be real-world adoption – if TCR's utilities (games, business adoption, and staking rewards) attract users, it could significantly strengthen the USTC peg over time.</p>
+
+    <h2>Thank You</h2>
+    <p>TCR TEAM</p>
   </div>
 
   <script>
     function toggleDarkMode() {
-      document.body.classList.toggle("dark");
+      document.body.classList.toggle('dark');
     }
   </script>
 </body>
