@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCR Token Unlock Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: white;
+    }
+    th, td {
+      text-align: center;
+      padding: 8px;
+      border: 1px solid #dee2e6;
+    }
+    th {
+      background-color: #343a40;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .unlock {
+      background-color: #d4edda;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>TCR Token Unlock Table</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Price ($)</th>
+        <th>Tokens Unlocked</th>
+        <th>Mint Batch #</th>
+        <th>Cumulative Circulating Supply</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- JS will populate this -->
+    </tbody>
+  </table>
+
+  <script>
+    const tbody = document.querySelector('tbody');
+    let totalSupply = 10000000;
+    let currentSupply = 0;
+    let currentBatch = 1;
+
+    for (let i = 0; i <= 100; i++) {
+      let price = (i / 100).toFixed(2);
+      let unlocked = 0;
+      let note = '';
+
+      if (i >= 1) {
+        unlocked = 100000;
+        currentSupply += unlocked;
+      }
+
+      if (i % 10 === 0 && i !== 0) {
+        note = `✅ Unlock Mint #${currentBatch + 1}`;
+        currentBatch++;
+      }
+
+      const row = document.createElement('tr');
+      if (note !== '') row.classList.add('unlock');
+      row.innerHTML = `
+        <td>$${price}</td>
+        <td>${unlocked.toLocaleString()}</td>
+        <td>${unlocked > 0 ? currentBatch : 0}</td>
+        <td>${currentSupply.toLocaleString()} ${note}</td>
+      `;
+      tbody.appendChild(row);
+    }
+  </script>
+</body>
+</html>
